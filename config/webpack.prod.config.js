@@ -15,17 +15,24 @@ module.exports = merge(common,{
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'index.html',//默认值为index.html，你也可以把它放在子目录下，如html/index.html
-      template: 'src/index.html',// 定义的html为模板生成 从根路径开始查找
-      inject: 'body',
-      minify: {// 压缩HTML文件
-        removeComments: true,//去除注释
-        collapseWhitespace: true,//去除空格
-      },
-    }),
     new MiniCssExtractPlugin({
       filename:'css/[name][contenthash].css'
     })
-  ]
+  ],
+  optimization:{
+    splitChunks:{
+      chunks:'all',
+      minSize:30000,
+      maxSize: 0,
+      minChunks: 1,
+      cacheGroups: {// 定义了被抽离的模块如何分成组，不然公共代码全打包到一个JS文件里面
+        vendors: {// 第三方库抽离
+          priority: 1,// 权重 先进行第三方库抽离
+          test:  /[\\/]node_modules[\\/]/,// 选从node_modules文件夹下引入的模块，所以所有第三方模块才会被拆分出来 递归的
+          name: "vendor",
+          enforce: true,
+        },
+      }
+    }
+  }
 });
