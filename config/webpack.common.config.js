@@ -5,14 +5,6 @@ const config = {
     app:'./src/index.js',
     vendor:['react','react-dom']
   },
-  output:{
-    // 主bundle
-    filename:'js/[name][contenthash].js',
-    chunkFilename:'js/[name][contenthash].js',
-    //此处的__dirname为/Users/bytedance/Desktop/webpack-test/config
-    path: path.resolve(__dirname, '../dist'),
-    // publicPath: "/assets/", // string    // 输出解析文件的目录，url 相对于 HTML 页面
-  },
   module:{
     rules:[
       {
@@ -23,15 +15,31 @@ const config = {
       {
         test:/\.(jpg|png)$/,
         use:[{
-          loader:'file-loader',
+          loader:'url-loader',
           options:{
             name:'images/[name]-[contenthash].[ext]',
-            // limit:8
-          }
-        }]
+            esModule:false,
+            limit:10240//小于10kb得图片打包
+          },
+        }],
+        exclude: /node_modules/
       }
     ]
   },
+  // externals: {
+  //   "react": {
+  //       commonjs: 'React',
+  //       commonjs2: 'React',
+  //        amd: 'React',
+  //          root: 'React'
+  //   },
+  //   "react-dom": {
+  //       commonjs: 'ReactDOM',
+  //       commonjs2: 'ReactDOM',
+  //        amd: 'ReactDOM',
+  //          root: 'ReactDOM'
+  //   }
+  // },
   plugins:[
     new HtmlWebpackPlugin({
       filename: 'index.html',//默认值为index.html，你也可以把它放在子目录下，如html/index.html

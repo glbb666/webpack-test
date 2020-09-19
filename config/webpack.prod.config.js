@@ -1,11 +1,26 @@
 const {merge} = require('webpack-merge');
 const common = require('./webpack.common.config.js');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//css压缩
+const OptimizeCss = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');// 可配置删除console.log
 
-console.log(merge,common)
+
+
+
 module.exports = merge(common,{
   mode:'production',
+  output:{
+    // 主bundle
+    filename:'js/[name][contenthash].js',
+    chunkFilename:'js/[name][contenthash].js',
+    //此处的__dirname为/Users/bytedance/Desktop/webpack-test/config
+    path: path.resolve(__dirname, '../dist'),
+    // publicPath + chunkFilename 为打包后生成的html文件请求 chunkFile 的路径
+    // publicPath + 图片的URL 为打包后生成的html文件请求图片的路径，其他静态资源文件同理
+    //publicPath: ''
+  },
   module: {
     rules:[
       {
@@ -15,6 +30,7 @@ module.exports = merge(common,{
     ]
   },
   plugins: [
+    new OptimizeCss(),//压缩css代码
     new MiniCssExtractPlugin({
       filename:'css/[name][contenthash].css'
     })
@@ -33,6 +49,15 @@ module.exports = merge(common,{
           enforce: true,
         },
       }
-    }
+    },
+    minimizer:[
+  		new TerserPlugin({// 缩减代码的插件
+            terserOptions: {
+              compress: {
+                drop_console: true, // 删除console.log
+              },
+            }
+        }),
+    ]
   }
 });
