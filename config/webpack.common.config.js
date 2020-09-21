@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = {
   entry:{
     app:'./src/index.js',
-    vendor:['react','react-dom']
+    // vendor:['react','react-dom']
   },
   module:{
     rules:[
