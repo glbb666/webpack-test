@@ -9,7 +9,9 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
+    "cache-loader": "^4.1.0",
     "css-loader": "^4.2.2",
+    "eslint": "^7.9.0",
     "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.4.1",
     "less": "^3.12.2",
@@ -19,6 +21,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "style-loader": "^1.2.1",
+    "thread-loader": "^3.0.0",
     "url-loader": "^4.1.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
@@ -28,6 +31,6 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.dev.config.js",
-    "build": "webpack --config ./config/webpack.prod.config.js"
+    "build": "webpack --display-chunks --config ./config/webpack.prod.config.js"
   }
 }

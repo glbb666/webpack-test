@@ -1,5 +1,8 @@
 import React from 'react';
 import PageA from './pageA';
+import {a,b} from './utils/const';
+import { ccc } from './utils/time';
+import {ddd} from './utils/url';
 class PageB extends React.Component{
     constructor(props){
       super(props);
@@ -8,6 +11,8 @@ class PageB extends React.Component{
       }
     }
     render(){
+      ccc();
+      ddd();
       return (
         <>
           <h1>PageB</h1>
@@ -15,5 +20,5 @@ class PageB extends React.Component{
         </>
       );
     }
-  }
-  export default PageB;
+}
+export default PageB;

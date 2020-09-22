@@ -2,15 +2,16 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = {
   entry:{
-    app:'./src/index.js',
-    // vendor:['react','react-dom']
+    app:'./src/index.js'
   },
   module:{
     rules:[
       {
         test:/\.(js|jsx)$/,
-        use:'babel-loader',
-        exclude: /node_modules/,//不需要去转译"node\_modules"这里面的文件。
+        use:['cache-loader',
+        'thread-loader',
+        'babel-loader'],
+        // exclude: /node_modules/,//不需要去转译"node\_modules"这里面的文件。
       },
       {
         test:/\.(jpg|png)$/,

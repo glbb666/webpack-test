@@ -1,7 +1,7 @@
 import React from 'react';
-import {a,b} from './utils/const';
 import {ccc} from './utils/time';
-class PageA extends React.Component{
+import {ddd} from './utils/url';
+class PageC extends React.Component{
     constructor(props){
       super(props);
       this.state = {
@@ -10,9 +10,10 @@ class PageA extends React.Component{
     }
     render(){
       ccc();
+      ddd();
       return (
-        <h1>PageA</h1>
+        <h1>PageC</h1>
       );
     }
 }
-export default PageA;
+export default PageC;
