@@ -1,1 +1,1 @@
-export const ccc = ()=>21;
+export const ccc = () => 21;

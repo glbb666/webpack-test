@@ -1,1 +1,1 @@
-export const ddd = ()=>123
+export const ddd = () => 123;
