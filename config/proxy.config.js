@@ -1,11 +1,10 @@
-
 const mock = '';
 module.exports = {
-    '/api':{
-        target:mock,
-        pathRewrite: {
-            '^/api' : ''
-        }
+  '/api': {
+    target: mock,
+    pathRewrite: {
+      '^/api': '',
     },
+  },
 
 };
